@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Auth Observables</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+      .col-sm-4 {
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <input id="username" class="form-control" type="text" placeholder="Enter your username">          
+          </div>
+
+          <div class="col-sm-4">
+            <input id="password" class="form-control" type="password" placeholder="Enter your password">          
+          </div>
+
+          <div class="col-sm-4">
+            <button id="login-button" class="btn btn-primary">Login</button>          
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">    
+    
+      <button id="quote-button" class="btn btn-primary">
+        Get a Quote!
+      </button>
+      <button id="secret-quote-button" class="btn btn-primary">
+        Get a Secret Quote!
+      </button>
+
+      <h1></h1>
+      
+    </div>
+
+  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/2.3.22/rx.all.js"></script>
+  <script src="app.js"></script>
+
+</html>
