@@ -9,12 +9,12 @@
   // Rx's 'fromEvent' method
   var quoteClickStream = Rx.Observable.fromEvent(quoteButton, 'click');
   var secretQuoteClickStream = Rx.Observable.fromEvent(secretQuoteButton, 'click');
-  var loginButtonStream = Rx.Observable.fromEvent(loginButton, 'click');  
+  var loginClickStream = Rx.Observable.fromEvent(loginButton, 'click');  
   
   // .map will create a new stream that is dependent on the first
   // and will project a value that we pass it. The login stream needs to
   // map a string that contains values from the username and password input boxes
-  var loginStream = loginButtonStream
+  var loginStream = loginClickStream
     .map(function() {
       var username = document.querySelector('#username').value;
       var password = document.querySelector('#password').value;
@@ -25,8 +25,7 @@
   // require us to pass in credentials 
   var getJwtStream = loginStream
     // flatMap flattens the new stream such that we can get access
-    // to JSON data returned from the fetch operation and not the 
-    // promise that is returned
+    // to JSON data returned from the fetch operation
     .flatMap(function(credentials) {
       // We can easily turn a promise into an observable with fromPromise
       return Rx.Observable.fromPromise(getJwt(credentials))
@@ -104,7 +103,7 @@
     localStorage.setItem('id_token', jwt.id_token);
   });
 
-  // Similarly, we will subscribe to the quoteResponseStream, listen
+  // We subscribe to the quoteResponseStream, listen
   // for quotes that get returned, and put them on the page
   quoteResponseStream.subscribe(function(text) {
     document.querySelector('.container h1').innerHTML = text;
