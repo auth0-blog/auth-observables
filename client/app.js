@@ -39,7 +39,7 @@
     }
 
     return this.flatMap(function(credentials) {
-      return Rx.Observable.fromPromise(getJwt(credentials));
+      return getJwt(credentials);
     });    
   }
 
@@ -132,13 +132,13 @@
   // We need a response stream that handles the fetch operation
   var quoteResponseStream = quoteStream
     .flatMap(function(request) {
-      return Rx.Observable.fromPromise(fetchQuote(request));
+      return fetchQuote(request);
     })
     // Instead of setting up a separate stream for the secret quotes, we
     // can simply merge the secretQuoteStream in and apply the same flatMap
     .merge(secretQuoteStream
       .flatMap(function(request) {
-        return Rx.Observable.fromPromise(fetchQuote(request));
+        return fetchQuote(request);
       })
     );
 
